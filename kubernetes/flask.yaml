@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: flask-container
-        image: stratcastor/duo-jenk:latest
+        image: manilck/duo-jenk:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 5500
