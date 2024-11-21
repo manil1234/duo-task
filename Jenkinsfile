@@ -27,7 +27,7 @@ pipeline {
                         '''
                     } else if (env.GIT_BRANCH == 'origin/dev') {
                         sh '''
-                        docker build -t manilck/duo-jenk:latest -t manilck/duo-jenk:v${BUILD_NUMBER} .
+                        docker build -t manilck/duo-jenk-dev:latest -t manilck/duo-jenk-dev:v${BUILD_NUMBER} .
                         '''
                     } else {
                         sh'echo "Unrecogognised branch"'
@@ -45,8 +45,8 @@ pipeline {
                         '''
                     } else if (env.GIT_BRANCH == 'origin/dev') {
                         sh '''
-                        docker push manilck/duo-jenk:latest
-                        docker push manilck/duo-jenk:v${BUILD_NUMBER}
+                        docker push manilck/duo-jenk-dev:latest
+                        docker push manilck/duo-jenk-dev:v${BUILD_NUMBER}
                         '''
                     } else {
                         sh'echo "Unrecogognised branch"'
@@ -65,7 +65,7 @@ pipeline {
                     } else if (env.GIT_BRANCH == 'origin/dev') {
                         sh'''
                         kubectl apply -f ./kubernetes -n dev
-                        kubectl set image deployment/flask-deployment flask-container=manilck/duo-jenk:v${BUILD_NUMBER} -n dev
+                        kubectl set image deployment/flask-deployment flask-container=manilck/duo-jenk-dev:v${BUILD_NUMBER} -n dev
                         '''
                     } else {
                         sh'echo "Unrecogognised branch"'
